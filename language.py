@@ -4,7 +4,9 @@ Name:
 Roll No:
 """
 
+from matplotlib import collections
 import language_tests as test
+
 
 project = "Language" # don't edit this
 
@@ -61,7 +63,16 @@ Parameters: 2D list of strs
 Returns: dict mapping strs to ints
 '''
 def countUnigrams(corpus):
-    return
+    dict={}
+    for i in corpus:
+        for j in i:
+            dict[j] = dict.get(j, 0) + 1
+    return dict
+
+
+             
+
+    # return
 
 
 '''
