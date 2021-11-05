@@ -100,8 +100,10 @@ def countStartWords(corpus):
     dict={}
     for words in corpus:
         j=words[0]
-        if j!=0:
-            dict[j] = dict.get(j, 0) + 1 
+        if j not in dict:
+            dict[j]=1
+        else:
+            dict[j]+=1
     return dict
 
 
