@@ -121,7 +121,7 @@ def countBigrams(corpus):
                 bigrams[sentence[i]][sentence[i+1]]=1
             else:
                 bigrams[sentence[i]][sentence[i+1]]+=1
-    print(bigrams)
+    return bigrams
 
 
 
