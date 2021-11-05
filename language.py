@@ -100,9 +100,8 @@ def countStartWords(corpus):
     dict={}
     for words in corpus:
         j=words[0]
-        print(j)
-        while j!=0:
-           dict[j] = dict.get(j, 0) + 1 
+        if j!=0:
+            dict[j] = dict.get(j, 0) + 1 
     return dict
 
 
@@ -325,6 +324,7 @@ if __name__ == "__main__":
     test.week1Tests()
     print("\n" + "#"*15 + " WEEK 1 OUTPUT " + "#" * 15 + "\n")
     test.runWeek1()
+   
 
     ## Uncomment these for Week 2 ##
 """
