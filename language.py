@@ -135,11 +135,8 @@ Returns: list of floats
 '''
 def buildUniformProbs(unigrams):
     lst=[]
-    tot=len(unigrams)
     for i in unigrams:
-        if i not in lst:
-            j=1/tot
-            lst.append(j)
+        lst.append(1/len(unigrams))
     return lst
 
 
