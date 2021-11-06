@@ -134,7 +134,13 @@ Parameters: list of strs
 Returns: list of floats
 '''
 def buildUniformProbs(unigrams):
-    return
+    lst=[]
+    tot=len(unigrams)
+    for i in unigrams:
+        if i not in lst:
+            j=1/tot
+            lst.append(j)
+    return lst
 
 
 '''
@@ -337,12 +343,12 @@ if __name__ == "__main__":
    
 
     ## Uncomment these for Week 2 ##
-"""
+
     print("\n" + "#"*15 + " WEEK 2 TESTS " +  "#" * 16 + "\n")
     test.week2Tests()
     print("\n" + "#"*15 + " WEEK 2 OUTPUT " + "#" * 15 + "\n")
     test.runWeek2()
-"""
+
 
     ## Uncomment these for Week 3 ##
 """
