@@ -167,10 +167,10 @@ def buildBigramProbs(unigramCounts, bigramCounts):
         for i in bigramCounts[prevWord]:
             l1.append(i)
             l2.append(bigramCounts[prevWord][i]/unigramCounts[prevWord])
-            temp={}
-            temp["words"]=l1
-            temp["probs"]=l2
-            bigramprobs[prevWord]=temp
+        temp={}
+        temp["words"]=l1
+        temp["probs"]=l2
+        bigramprobs[prevWord]=temp
     return bigramprobs
 
             
