@@ -173,10 +173,6 @@ def buildBigramProbs(unigramCounts, bigramCounts):
             bigramprobs[prevWord]=temp
     return bigramprobs
 
-            
-            
-    
-
 
 '''
 getTopWords(count, words, probs, ignoreList)
@@ -185,7 +181,24 @@ Parameters: int ; list of strs ; list of floats ; list of strs
 Returns: dict mapping strs to floats
 '''
 def getTopWords(count, words, probs, ignoreList):
-    return
+    topwords={}
+    temp={}
+    for i in range(len(words)):
+        temp[words[i]]=probs[i]        
+    while len(topwords)!=count:
+        large=0
+        for j in temp:
+            if temp[j]>large and j not in ignoreList and j not in topwords:
+                var=j
+                large=temp[j]
+        topwords[var] =large    
+    return topwords
+            
+
+   
+    
+
+    
 
 
 '''
