@@ -8,7 +8,8 @@ from matplotlib import collections
 from matplotlib.pyplot import jet
 import language_tests as test
 import random
-
+import numpy
+import matplotlib
 
 project = "Language" # don't edit this
 
