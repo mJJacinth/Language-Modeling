@@ -5,6 +5,7 @@ Roll No:
 """
 
 from matplotlib import collections
+from matplotlib.pyplot import jet
 import language_tests as test
 import random
 
@@ -216,7 +217,6 @@ def generateTextFromUnigrams(count, words, probs):
     for i in lst:
         str+=" "+i
     return str
-    
 
 
 '''
@@ -226,8 +226,28 @@ Parameters: int ; list of strs ; list of floats ; dict mapping strs to (dicts ma
 Returns: str
 '''
 def generateTextFromBigrams(count, startWords, startWordProbs, bigramProbs):
-    return
+    str=""
+    lastword=""
+    var=0
+    while var!=count:
+        if str=="" or lastword==".":
+            for i in choices(startWords, weights=startWordProbs):
+                lastword=i
+                str+=" "+i
+                var+=1
+        else:
+            for i in choices(bigramProbs[lastword]["words"], weights=bigramProbs[lastword]["probs"]):
+                lastword=i
+                str+=" "+i
+                var+=1
+    return str
 
+    
+     
+
+
+        
+    
 
 ### WEEK 3 ###
 
