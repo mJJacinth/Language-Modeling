@@ -38,9 +38,10 @@ getCorpusLength(corpus)
 Parameters: 2D list of strs
 Returns: int
 '''
-def getCorpusLength(corpus):
+def getCorpusLength(corpus): 
     total_length = sum(len(row) for row in corpus)
     return total_length
+    
   
 
 
@@ -72,10 +73,6 @@ def countUnigrams(corpus):
             dict[j] = dict.get(j, 0) + 1
     return dict
 
-
-             
-
-    # return
 
 
 '''
@@ -314,9 +311,33 @@ Parameters: 2D list of strs ; 2D list of strs ; int
 Returns: dict mapping strs to (lists of values)
 '''
 def setupChartData(corpus1, corpus2, topWordCount):
-    
-    return
-
+    corpus_voc1,corpus_voc2=buildVocabulary(corpus1),buildVocabulary(corpus2)
+    corpus_count1,corpus_count2=countUnigrams(corpus1),countUnigrams(corpus2)
+    corpus_length1,corpus_length2=getCorpusLength(corpus1),getCorpusLength(corpus2)
+    probs1,probs2=buildUnigramProbs(corpus_voc1,corpus_count1,corpus_length1),buildUnigramProbs(corpus_voc2,corpus_count2,corpus_length2)
+    top1,top2=getTopWords(topWordCount,corpus_voc1,probs1,ignore),getTopWords(topWordCount,corpus_voc2,probs2,ignore)
+    lst=[]
+    for i,j in top1.items():
+        lst.append(i)
+    for k,l in top2.items():
+        if k not in lst:
+            lst.append(k)
+    lst_prob1=[]
+    lst_prob2=[]
+    res={}
+    for key in range(len(lst)):
+        if lst[key] in corpus_voc1:
+            ind1=corpus_voc1.index(lst[key])
+            lst_prob1.append(probs1[ind1])
+        else:
+            lst_prob1.append(0)
+        if lst[key] in corpus_voc2:
+            ind2=corpus_voc2.index(lst[key])
+            lst_prob2.append(probs2[ind2])
+    res["topWords"]=lst
+    res["corpus1Probs"]=lst_prob1
+    res["corpus2Probs"]=lst_prob2
+    return res
 
 '''
 graphTopWordsSideBySide(corpus1, name1, corpus2, name2, numWords, title)
@@ -325,6 +346,8 @@ Parameters: 2D list of strs ; str ; 2D list of strs ; str ; int ; str
 Returns: None
 '''
 def graphTopWordsSideBySide(corpus1, name1, corpus2, name2, numWords, title):
+    chartdata=setupChartData(corpus1,corpus2,numWords)
+    sideBySideBarPlots(chartdata["topWords"],chartdata["corpus1Probs"],chartdata["corpus2Probs"],name1,name2,title)
     return
 
 
@@ -335,6 +358,8 @@ Parameters: 2D list of strs ; 2D list of strs ; int ; str
 Returns: None
 '''
 def graphTopWordsInScatterplot(corpus1, corpus2, numWords, title):
+    chartdata=setupChartData(corpus1,corpus2,numWords)
+    scatterPlot(chartdata["corpus1Probs"],chartdata["corpus2Probs"],chartdata["topWords"],"Top Words")
     return
 
 
@@ -413,18 +438,18 @@ def scatterPlot(xs, ys, labels, title):
 
 # This code runs the test cases to check your work
 if __name__ == "__main__":
-    # print("\n" + "#"*15 + " WEEK 1 TESTS " +  "#" * 16 + "\n")
-    # test.week1Tests()
-    # print("\n" + "#"*15 + " WEEK 1 OUTPUT " + "#" * 15 + "\n")
-    # test.runWeek1()
+    print("\n" + "#"*15 + " WEEK 1 TESTS " +  "#" * 16 + "\n")
+    test.week1Tests()
+    print("\n" + "#"*15 + " WEEK 1 OUTPUT " + "#" * 15 + "\n")
+    test.runWeek1()
    
 
     # ## Uncomment these for Week 2 ##
 
-    # print("\n" + "#"*15 + " WEEK 2 TESTS " +  "#" * 16 + "\n")
-    # test.week2Tests()
-    # print("\n" + "#"*15 + " WEEK 2 OUTPUT " + "#" * 15 + "\n")
-    # test.runWeek2()
+    print("\n" + "#"*15 + " WEEK 2 TESTS " +  "#" * 16 + "\n")
+    test.week2Tests()
+    print("\n" + "#"*15 + " WEEK 2 OUTPUT " + "#" * 15 + "\n")
+    test.runWeek2()
 
 
     ## Uncomment these for Week 3 ##
