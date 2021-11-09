@@ -269,7 +269,7 @@ def graphTop50Words(corpus):
     length=getCorpusLength(corpus)
     unigram_probs=buildUnigramProbs(words,counts,length)
     prob_dict=getTopWords(50,words,unigram_probs,ignore)
-    plot=barPlot(prob_dict,"Top 50 words")
+    plot=barPlot(prob_dict,"Top 50  words")
     return
 
 
@@ -281,6 +281,12 @@ Parameters: 2D list of strs
 Returns: None
 '''
 def graphTopStartWords(corpus):
+    words=getStartWords(corpus)
+    count=countStartWords(corpus)
+    length=getCorpusLength(corpus)
+    unigram_probs=buildUnigramProbs(words,count,length)
+    dict=getTopWords(50,words,unigram_probs,ignore)
+    plot=barPlot(dict,"Top starting words")
     return
 
 
@@ -291,6 +297,13 @@ Parameters: 2D list of strs ; str
 Returns: None
 '''
 def graphTopNextWords(corpus, word):
+    unigramCounts=countUnigrams(corpus)
+    count=countBigrams(corpus)
+    dictionary=buildBigramProbs(unigramCounts,count)
+    words_list=dictionary[word]["words"]
+    probs_list=dictionary[word]["probs"]
+    dict1=getTopWords(10,words_list,probs_list,ignore)
+    barPlot(dict1,"Top Bigrams")
     return
 
 
@@ -301,6 +314,7 @@ Parameters: 2D list of strs ; 2D list of strs ; int
 Returns: dict mapping strs to (lists of values)
 '''
 def setupChartData(corpus1, corpus2, topWordCount):
+    
     return
 
 
@@ -399,20 +413,21 @@ def scatterPlot(xs, ys, labels, title):
 
 # This code runs the test cases to check your work
 if __name__ == "__main__":
-    print("\n" + "#"*15 + " WEEK 1 TESTS " +  "#" * 16 + "\n")
-    test.week1Tests()
-    print("\n" + "#"*15 + " WEEK 1 OUTPUT " + "#" * 15 + "\n")
-    test.runWeek1()
+    # print("\n" + "#"*15 + " WEEK 1 TESTS " +  "#" * 16 + "\n")
+    # test.week1Tests()
+    # print("\n" + "#"*15 + " WEEK 1 OUTPUT " + "#" * 15 + "\n")
+    # test.runWeek1()
    
 
-    ## Uncomment these for Week 2 ##
+    # ## Uncomment these for Week 2 ##
 
-    print("\n" + "#"*15 + " WEEK 2 TESTS " +  "#" * 16 + "\n")
-    test.week2Tests()
-    print("\n" + "#"*15 + " WEEK 2 OUTPUT " + "#" * 15 + "\n")
-    test.runWeek2()
+    # print("\n" + "#"*15 + " WEEK 2 TESTS " +  "#" * 16 + "\n")
+    # test.week2Tests()
+    # print("\n" + "#"*15 + " WEEK 2 OUTPUT " + "#" * 15 + "\n")
+    # test.runWeek2()
 
 
     ## Uncomment these for Week 3 ##
     print("\n" + "#"*15 + " WEEK 3 OUTPUT " + "#" * 15 + "\n")
     test.runWeek3()
+    
