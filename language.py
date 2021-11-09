@@ -6,6 +6,7 @@ Roll No:
 
 from matplotlib import collections
 import language_tests as test
+import random
 
 
 project = "Language" # don't edit this
@@ -167,10 +168,10 @@ def buildBigramProbs(unigramCounts, bigramCounts):
         for i in bigramCounts[prevWord]:
             l1.append(i)
             l2.append(bigramCounts[prevWord][i]/unigramCounts[prevWord])
-            temp={}
-            temp["words"]=l1
-            temp["probs"]=l2
-            bigramprobs[prevWord]=temp
+        temp={}
+        temp["words"]=l1
+        temp["probs"]=l2
+        bigramprobs[prevWord]=temp
     return bigramprobs
 
 
@@ -195,11 +196,6 @@ def getTopWords(count, words, probs, ignoreList):
     return topwords
             
 
-   
-    
-
-    
-
 
 '''
 generateTextFromUnigrams(count, words, probs)
@@ -209,7 +205,18 @@ Returns: str
 '''
 from random import choices
 def generateTextFromUnigrams(count, words, probs):
-    return
+    lst=[]
+    var=[]
+    str=" "
+    for i in range(0,count):
+        value=(random.choices(words, weights=probs))
+        var.append(value[0])
+    for each in var:
+        lst.append(each)
+    for i in lst:
+        str+=" "+i
+    return str
+    
 
 
 '''
